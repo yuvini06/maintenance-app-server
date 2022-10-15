@@ -39,7 +39,7 @@ class MaintenanceWorkRepository {
       );
 
       // Activate/deactivate maintenance flag only if maintenance task update was successful
-      if (result.affectedRows) {
+      if (result[0].affectedRows) {
         const active = action === ACTION_TYPES.START ? 1 : 0; // Get flag state
         await connection.query(
           `UPDATE process_status_info SET active=? WHERE task_type="MAINTENANCE"`,
